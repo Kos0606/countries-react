@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import CountriesListView from "./CountriesListView";
 
 function App() {
+  function change() {
+    const modeIcon = document.querySelector(".fa-moon");
+    document.body.classList.toggle("light");
+    modeIcon.innerHTML = "dark mode";
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card) => {
+      card.classList.toggle("card-background");
+    });
+    // check if select and input menus exist and add  a toggle class
+
+    const selectAndInput = document.querySelector(".select-input-container");
+    if (selectAndInput) {
+      selectAndInput.classList.toggle("light-mode");
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="title-icon">
+        <h2>Where in the World? </h2>
+        <span className="icon">
+          <i className="fas fa-moon" onClick={() => change()}>
+            {" "}
+            light mode
+          </i>
+        </span>
+      </div>
+      <CountriesListView />
     </div>
   );
 }
